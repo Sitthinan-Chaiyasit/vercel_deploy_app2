@@ -1,0 +1,332 @@
+<body style="background: linear-gradient(135deg, #0f2027 0%, #2c5364 100%); min-height: 100vh;">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+      <div class="container">
+        <a class="navbar-brand fw-bold" href="#">🙏😁 Sitthinan สูตรคูณ📖❤️</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+            <li class="nav-item"><a class="nav-link" href="for.html">Loop</a></li>
+            <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ตารางสูตรคูณแม่ 2-12</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 20px 0;
+        }
+        .main-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+        }
+        .table-selector {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 15px;
+            margin: 10px 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            text-align: center;
+        }
+        .table-selector:hover {
+            background: rgba(102, 126, 234, 0.1);
+            border-color: #667eea;
+            transform: translateY(-2px);
+        }
+        .table-selector.active {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border-color: #667eea;
+        }
+        .multiplication-table {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+        .multiplication-row {
+            background: rgba(102, 126, 234, 0.05);
+            border-radius: 10px;
+            padding: 15px 20px;
+            margin: 8px 0;
+            font-size: 1.4rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+        .multiplication-row:hover {
+            background: rgba(102, 126, 234, 0.1);
+            border-left-color: #667eea;
+            transform: translateX(5px);
+        }
+        .number {
+            color: #667eea;
+            font-weight: bold;
+        }
+        .operator {
+            color: #764ba2;
+            margin: 0 10px;
+        }
+        .result {
+            color: #48bb78;
+            font-weight: bold;
+        }
+        .back-btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border: none;
+            border-radius: 15px;
+            color: white;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+            color: white;
+        }
+        .table-title {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+        .all-tables-view {
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        .table-section {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+        .section-title {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="main-container">
+                    <div class="text-center mb-4">
+                        <h1 class="display-4 mb-3">
+                            <i class="fas fa-table text-primary"></i>
+                            ตารางสูตรคูณ
+                        </h1>
+                        <p class="lead text-muted">เลือกแม่สูตรคูณที่ต้องการดู หรือดูทั้งหมดพร้อมกัน</p>
+                    </div>
+
+                    <!-- เลือกแม่สูตรคูณ -->
+                    <div id="tableSelector">
+                        <div class="mb-4">
+                            <h5 class="text-center mb-3">เลือกแม่สูตรคูณที่ต้องการดู:</h5>
+                            <div class="row" id="tableSelectorGrid">
+                                <!-- จะถูกสร้างด้วย JavaScript -->
+                            </div>
+                        </div>
+                        
+                        <div class="text-center mb-4">
+                            <button class="btn btn-outline-primary btn-lg px-4" id="showAllBtn">
+                                <i class="fas fa-th-list"></i> ดูทั้งหมด (แม่ 2-12)
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- แสดงสูตรคูณแม่เดียว -->
+                    <div id="singleTableView" style="display: none;">
+                        <div class="text-center mb-4">
+                            <button class="btn back-btn btn-lg px-4 mb-3" id="backBtn">
+                                <i class="fas fa-arrow-left"></i> กลับไปเลือกแม่สูตรคูณ
+                            </button>
+                        </div>
+                        <div class="multiplication-table">
+                            <h2 class="table-title text-center" id="tableTitle">แม่ 2</h2>
+                            <div id="multiplicationList">
+                                <!-- จะถูกสร้างด้วย JavaScript -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- แสดงสูตรคูณทั้งหมด -->
+                    <div id="allTablesView" style="display: none;">
+                        <div class="text-center mb-4">
+                            <button class="btn back-btn btn-lg px-4 mb-3" id="backAllBtn">
+                                <i class="fas fa-arrow-left"></i> กลับไปเลือกแม่สูตรคูณ
+                            </button>
+                        </div>
+                        <div class="all-tables-view" id="allTablesList">
+                            <!-- จะถูกสร้างด้วย JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        class MultiplicationTable {
+            constructor() {
+                this.init();
+            }
+
+            init() {
+                this.createTableSelector();
+                this.bindEvents();
+            }
+
+            createTableSelector() {
+                const selectorGrid = document.getElementById('tableSelectorGrid');
+                selectorGrid.innerHTML = '';
+                
+                for (let i = 2; i <= 12; i++) {
+                    const col = document.createElement('div');
+                    col.className = 'col-6 col-md-4 col-lg-3';
+                    col.innerHTML = `
+                        <div class="table-selector" data-table="${i}">
+                            <h5 class="mb-1">แม่ ${i}</h5>
+                            <small>${i} × 1 ถึง ${i} × 12</small>
+                        </div>
+                    `;
+                    selectorGrid.appendChild(col);
+                }
+            }
+
+            bindEvents() {
+                // เลือกแม่สูตรคูณ
+                document.addEventListener('click', (e) => {
+                    if (e.target.closest('.table-selector')) {
+                        const table = parseInt(e.target.closest('.table-selector').dataset.table);
+                        this.showSingleTable(table);
+                    }
+                });
+
+                // ดูทั้งหมด
+                document.getElementById('showAllBtn').addEventListener('click', () => {
+                    this.showAllTables();
+                });
+
+                // กลับไปเลือกแม่สูตรคูณ
+                document.getElementById('backBtn').addEventListener('click', () => {
+                    this.showSelector();
+                });
+
+                document.getElementById('backAllBtn').addEventListener('click', () => {
+                    this.showSelector();
+                });
+            }
+
+            showSingleTable(table) {
+                // สร้างสูตรคูณแม่เดียว
+                const title = document.getElementById('tableTitle');
+                const list = document.getElementById('multiplicationList');
+                
+                title.textContent = `แม่ ${table}`;
+                list.innerHTML = '';
+                
+                for (let i = 1; i <= 12; i++) {
+                    const result = table * i;
+                    const row = document.createElement('div');
+                    row.className = 'multiplication-row';
+                    row.innerHTML = `
+                        <span class="number">${table}</span>
+                        <span class="operator">×</span>
+                        <span class="number">${i}</span>
+                        <span class="operator">=</span>
+                        <span class="result">${result}</span>
+                    `;
+                    list.appendChild(row);
+                }
+                
+                // แสดง/ซ่อน elements
+                document.getElementById('tableSelector').style.display = 'none';
+                document.getElementById('singleTableView').style.display = 'block';
+                document.getElementById('allTablesView').style.display = 'none';
+            }
+
+            showAllTables() {
+                const allTablesList = document.getElementById('allTablesList');
+                allTablesList.innerHTML = '';
+                
+                for (let table = 2; table <= 12; table++) {
+                    const section = document.createElement('div');
+                    section.className = 'table-section';
+                    
+                    let sectionHTML = `<h3 class="section-title">แม่ ${table}</h3>`;
+                    
+                    for (let i = 1; i <= 12; i++) {
+                        const result = table * i;
+                        sectionHTML += `
+                            <div class="multiplication-row">
+                                <span class="number">${table}</span>
+                                <span class="operator">×</span>
+                                <span class="number">${i}</span>
+                                <span class="operator">=</span>
+                                <span class="result">${result}</span>
+                            </div>
+                        `;
+                    }
+                    
+                    section.innerHTML = sectionHTML;
+                    allTablesList.appendChild(section);
+                }
+                
+                // แสดง/ซ่อน elements
+                document.getElementById('tableSelector').style.display = 'none';
+                document.getElementById('singleTableView').style.display = 'none';
+                document.getElementById('allTablesView').style.display = 'block';
+            }
+
+            showSelector() {
+                document.getElementById('tableSelector').style.display = 'block';
+                document.getElementById('singleTableView').style.display = 'none';
+                document.getElementById('allTablesView').style.display = 'none';
+                
+                // ลบ active class
+                document.querySelectorAll('.table-selector').forEach(el => {
+                    el.classList.remove('active');
+                });
+            }
+        }
+
+        // เริ่มแอปพลิเคชัน
+        document.addEventListener('DOMContentLoaded', () => {
+            new MultiplicationTable();
+        });
+    </script>
+</body>
+</html>
